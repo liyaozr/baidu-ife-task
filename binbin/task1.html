@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础JavaScript练习（一）</title>
+	<style type="text/css">
+		#parent{list-style: none;padding: 0;}
+		.child{display: inline-block; width: 70px;height: 70px;background: red;text-align: center;line-height: 70px;font-size: 16px;font-weight: bold;color: white;margin: 2px;}
+	</style>
+</head>
+<body>
+	<input type="text">
+	<button>左侧入</button>
+	<button>右侧入</button>
+	<button>左侧出</button>
+	<button>右侧出</button>
+	<ul id="parent">
+	</ul>
+
+	<script type="text/javascript">
+	    var oTxt = document.getElementsByTagName('input')[0];
+	    var aBtn = document.getElementsByTagName('button');
+	    var oUl = document.getElementById('parent');
+	    var aLi = oUl.getElementsByTagName('li');
+	    var aFoo=[creatLi,creatLi,removeLi,removeLi];
+	    var flag=[true,false,true,false];
+
+        for (var i = 0; i < aBtn.length; i++) {
+        	aBtn[i].index=i;
+        	aBtn[i].onclick=function () {
+        		return aFoo[this.index](this.index);
+        	};
+        }
+        //点击按钮创建li
+		function creatLi(flag) {
+			if (oTxt.value === "") {
+				alert("请输入内容");
+			}else{
+				var oLi = document.createElement("li");
+				oLi.innerHTML = oTxt.value;
+				oLi.className = "child";
+				if (flag) {
+					aLi.length===0?(oUl.appendChild(oLi)):(oUl.insertBefore(oLi,oUl.firstChild));
+				}else{
+					oUl.appendChild(oLi);
+				}
+			}
+		}
+		//点击按钮删除li
+		function removeLi(flag) {
+			if (aLi.length>0) {
+				if (flag) {
+					var oContent1=aLi[0].innerHTML;
+					oUl.removeChild(aLi[0]);
+					alert(oContent1);
+				}else{
+					var oContent2=oUl.lastChild.innerHTML;
+					oUl.removeChild(oUl.lastChild);
+					alert(oContent2);
+				}
+			}else{
+				alert("已经没有东西了");
+			}
+		}
+		//点击li删除
+		oUl.onclick = function (e) {
+			e = event || window.event;
+			target = e.target||e.srcElement;
+			if (target.nodeType.UpperCase = 'LI') {
+				oUl.removeChild(target);
+			}
+		};
+		// oUl.onmouseover=function (){
+		// 	for (var i = 0; i < aLi.length; i++) {
+		// 		aLi[i].onclick = function () {
+		// 			oUl.removeChild(this);
+		// 		};
+		//     }
+		// };
+	</script>
+</body>
+</html>

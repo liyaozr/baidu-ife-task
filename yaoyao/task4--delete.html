@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务四：听指令的小方块（一）</title>
+	<style type="text/css">
+		#canvas{background: #e7e7e7;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;border: 2px solid #000;}
+		#wrap1{width: 41px;height: 410px;position: absolute;left:50%;top: 50%;transform: translate(-238px,-50%);}
+		#wrap2{width: 410px;height: 41px;position: absolute;left: 50%;top: 50%;transform: translate(-50%,-238px);}
+		#wrap1 div,#wrap2 div{width: 41px;height: 41px;line-height: 41px;text-align: center;font-size: 16px;float: left;}
+		#main{width: 40px;height: 40px;position: absolute;top:90px;left: 701px;background: red;}
+	</style>
+
+</head>
+<body>
+	<div id="wrap1">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+	</div>
+	<canvas id="canvas" width="411px" height="411px">
+	</canvas>
+	<div id="wrap2">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+	</div>
+	<input type="text">
+	<input type="button" value="执行">
+	<script type="text/javascript">
+	   var canvas = document.getElementById('canvas');
+	   var gc = canvas.getContext('2d');
+	   var data = map(10,10);
+       render(data,gc);
+
+	   function render(data,gc) {
+	   	var rLen = data.length;
+	   	var cLen = data[0].length
+	   	for (var i = 0; i < rLen; i++) {
+	   		for (var j = 0; j < cLen; j++) {
+	   			gc.fillStyle = "#fff";
+	   			gc.fillRect(j*41+1, i*41+1, 40, 40);
+	   		}
+	   	}
+	   }
+	   function map(r,c) {
+		   	//二维数据的创建
+		   	var data = [];
+		   	for (var i = 0; i < r; i++) {
+		   		data.push([]);
+		   		for (var j = 0; j < c; j++) {
+		   			data[i].push(0);
+		   		}
+		   	}
+		   	return data;
+	   }
+
+	   // gc.fillStyle = "#f0f";
+	   // var l = 0;
+	   // var t = 0;
+	   // gc.fillRect(l, t, 41, 41);
+
+	</script>
+</body>
+</html>

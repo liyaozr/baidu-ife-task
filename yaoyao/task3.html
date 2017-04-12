@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务三：表单（三）联动</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<style type="text/css">
+	    form{margin: 20px 20px;}
+	    .form-inline input+input{margin-left: 150px;}
+	    #wrap1,#wrap2{margin-top: 10px;}
+	    #wrap2{display: none;}
+		p {
+		  font-size: 12px;
+		  text-indent: 34px;
+		}
+			</style>
+	<script type="text/javascript">
+		window.onload = function () {
+			var oProf = document.getElementById('prof');
+			var aRadio = oProf.getElementsByTagName('input');
+			var oWrap1 = document.getElementById('wrap1');
+			var oWrap2 = document.getElementById('wrap2');
+			//点击单选框切换表单
+			aRadio[0].onclick = function () {
+				oWrap1.style.display = 'block';
+				oWrap2.style.display = 'none';
+			};
+			aRadio[1].onclick = function () {
+				oWrap1.style.display = 'none';
+				oWrap2.style.display = 'block';
+			};
+		};
+
+		function addEvent(node,event,handler){
+		    if (!!node.addEventListener){
+		        node.addEventListener(event,handler,!1);
+		    }else{
+		        node.attachEvent('on'+event,handler);
+		    }
+		}
+	</script>
+</head>
+<body>
+	<form class="form-inline">
+		<label id="prof">
+			<input type="radio" name="profession" value="option1">在校生
+			<input type="radio" name="profession" value="option2">非在校生
+		</label>
+	</form>
+	<form id="wrap1" class="form-inline" name="demoForm">
+	    <!-- 地点 -->
+		<select class="form-control" name="location" >
+		    <option>请选择地点</option>
+		</select>
+        <!-- 学校 -->
+		<select class="form-control" name="school">
+			<option>请选择学校</option>
+		</select>
+	</form>
+
+	<form id="wrap2" class="form-inline">
+		<label >就业单位 <input type="text" class="form-control"></label>
+	</form>
+
+	<script>
+	    // 数据定义
+	    var locations = [
+	        {text:'北京',value:'bj'},
+	        {text:'上海',value:'sh'},
+	        {text:'广州',value:'gz'},
+	        {text:'深圳',value:'sz'}
+	    ];
+	    var schools = {
+	        bj:[
+	            {text:'北京大学',value:'bj.1'},
+	            {text:'清华大学',value:'bj.2'},
+	            {text:'人民大学',value:'bj.3'},
+	        ],
+	        sh:[
+	            {text:'复旦大学',value:'sh.1'},
+	            {text:'上海大学',value:'sh.2'},
+	            {text:'XX大学',value:'sh.3'}
+	        ],
+	        gz:[
+	            {text:'中山大学',value:'gz.1'},
+	            {text:'广东大学',value:'gz.2'},
+	            {text:'XX大学',value:'gz.3'}
+	        ],
+	        sz:[
+	            {text:'深圳大学',value:'sz.1'},
+	            {text:'上海大学',value:'sz.2'},
+	            {text:'XX大学',value:'sz.3'}
+	        ]
+	    };
+	    var demoForm = document.forms.demoForm;
+	    // 填充选择器
+	    function fillSelect(select,list){
+	         //倒序遍历，将原有的内容清空
+	        for(var i=select.length-1;i>0;i--){
+	            select.remove(i);
+	        }
+	        //把创建的新的内容添加到选择器中
+	        for(var i=0,l=list.length,data;i<l;i++){
+	            data = list[i];
+	            var option = new Option(
+	                data.text,data.value
+	            );
+	            select.add(option);
+	        }
+	    }
+	    // 切换目录
+	    addEvent(
+	        demoForm.location,
+	        'change',function(event){
+	            var value = demoForm.location.value,
+	                list = schools[value]||[];
+	            fillSelect(demoForm.school,list);
+	        }
+	    );
+	    fillSelect(demoForm.location,locations);
+	</script>
+    <script src='jquery.js'></script>
+    <script src='bootstrap.js'></script>
+</body>
+</html>

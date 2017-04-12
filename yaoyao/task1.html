@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务一：表单（一）单个表单项的检验</title>
+	<style type="text/css">
+		p {
+		  font-size: 12px;
+		  text-indent: 34px;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<label>名称 <input type="text" name="username"></label>
+		<input type="button" value="验证">
+		<p id="mess">必填，长度为4-16个字符</p>
+	</form>
+    <script src='jquery.js'></script>
+    <script src='bootstrap.js'></script>
+	<script type="text/javascript">
+		var aInput = document.getElementsByTagName('input');
+		function getBLen(str) {
+		    // 把双字节的替换成两个单字节的然后再获得长度
+		    if (str == null) return 0;
+		    if (typeof str != "string") {
+		        str += "";
+		    }
+		    return str.replace(/[^\x00-\xff]/g, "01").length;
+		}
+		aInput[1].onclick = function () {
+			var value = aInput[0].value;
+			var len = getBLen(value);
+			var oMess = document.getElementById('mess');
+			if (!value) {
+				oMess.innerHTML = "姓名不能为空";
+				oMess.style.color = "red";
+				aInput[0].style.borderColor = "red";
+			}else if (len>16||len<4) {
+				oMess.innerHTML = "长度为4-16个字符";
+				oMess.style.color = "red";
+			}else{
+				oMess.innerHTML = "名称格式正确";
+				oMess.style.color = "#7fc568";
+				aInput[0].style.borderColor = "#7fc568";
+			}
+		};
+	</script>
+</body>
+</html>

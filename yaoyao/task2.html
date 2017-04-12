@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二：表单（二）多个表单项的动态校验</title>
+	<style type="text/css">
+		p {
+		  font-size: 12px;
+		  text-indent: 34px;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<label>名称 <input type="text" name="username" required></label>
+		<p></p>
+		<label>密码 <input type="password" name="password" required></label>
+		<P></P>
+		<label>密码 <input type="password" name="password" required></label>
+		<p></p>
+		<label>邮箱 <input type="email" name="email" required></label>
+		<p></p>
+		<label>手机 <input type="tel" name="tel" required></label>
+		<p></p>
+		<button>提交</button>
+	</form>
+
+	<script type="text/javascript">
+		function getBLen(str) {
+		    // 把双字节的替换成两个单字节的然后再获得长度
+		    if (str == null) return 0;
+		    if (typeof str != "string") {
+		        str += "";
+		    }
+		    return str.replace(/[^\x00-\xff]/g, "01").length;
+		}
+
+			var aInput = document.getElementsByTagName('input');
+			var aMess = document.getElementsByTagName('p');
+			var val = '';
+			aInput[0].onfocus = function () {
+				aMess[0].innerHTML = "必填，长度为4-16个字符";
+				aMess[0].style.color = "black";
+			};
+			aInput[0].onblur = checkName;
+			function checkName(flag) {
+				var value = aInput[0].value;
+				var len = getBLen(value);
+				if (!value) {
+					aMess[0].innerHTML = "姓名不能为空";
+					if (flag) {
+						val+="姓名不能为空\/";
+					}
+					aMess[0].style.color = "red";
+					aInput[0].style.borderColor = "red";
+				}else if (len>16||len<4) {
+					aMess[0].innerHTML = "长度为4-16个字符\/";
+					if (flag) {
+						val+="长度为4-16个字符";
+					}
+					aMess[0].style.color = "red";
+				}else{
+					aMess[0].innerHTML = "名称格式正确";
+					aMess[0].style.color = "#7fc568";
+					aInput[0].style.borderColor = "#7fc568";
+				}
+			}
+			aInput[1].onfocus = function () {
+				aMess[1].innerHTML = "必填，请输入4-8位数字与字母的组合";
+			};
+			aInput[1].onblur = checkPass;
+			function checkPass(flag) {
+				var value = aInput[1].value;
+				var len = getBLen(value);
+				var reg = /^[a-zA-Z0-9]$/;
+				if (!value) {
+					aMess[1].innerHTML = "密码不能为空";
+					if (flag) {
+						val+="密码不能为空\/";
+					}
+					aMess[1].style.color = "red";
+					aInput[1].style.borderColor = "red";
+				}else if (len>12||len<4||reg.test(value)) {
+					aMess[1].innerHTML = "请输入4-12位数字与字母的组合";
+					if (flag) {
+						val+="请输入4-12位数字与字母的组合\/";
+					}
+					aMess[1].style.color = "red";
+					aInput[1].style.borderColor = "red";
+				}else{
+					aMess[1].innerHTML = "密码可用";
+					aMess[1].style.color = "#7fc568";
+					aInput[1].style.borderColor = "#7fc568";
+				}
+			}
+			aInput[2].onfocus = function () {
+				aMess[2].innerHTML = "再次输入相同密码";
+			};
+			aInput[2].onblur = checkPass1;
+			function checkPass1(flag) {
+				var value = aInput[2].value;
+				if (value != aInput[1].value||!value) {
+					aMess[2].innerHTML = "密码输入不一致";
+					if (flag) {
+						val+="密码输入不一致\/";
+					}
+					aMess[2].style.color = "red";
+					aInput[2].style.borderColor = "red";
+				}else{
+					aMess[2].innerHTML = "密码输入一致";
+					aMess[2].style.color = "#7fc568";
+					aInput[2].style.borderColor = "#7fc568";
+				}
+			}
+			aInput[3].onfocus = function () {
+				aMess[3].innerHTML = "请输入有效邮箱";
+			};
+			aInput[3].onblur = checkMail;
+			function checkMail(flag) {
+				var value = aInput[3].value;
+				var reg =  /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+				if (!reg.test(value)) {
+					aMess[3].innerHTML = "邮箱格式错误";
+					if (flag) {
+						val+="邮箱格式错误\/";
+					}
+					aMess[3].style.color = "red";
+					aInput[3].style.borderColor = "red";
+				}else{
+					aMess[3].innerHTML = "邮箱格式正确";
+					aMess[3].style.color = "#7fc568";
+					aInput[3].style.borderColor = "#7fc568";
+				}
+			}
+			aInput[4].onfocus = function () {
+				aMess[4].innerHTML = "请输入有效的手机号码";
+			};
+			aInput[4].onblur = checkPhone;
+			function checkPhone(flag) {
+				var value = aInput[4].value;
+				var reg =  /^((13[0-9]{1})|159|153)+\d{8}$/;
+				if (!reg.test(value)) {
+					aMess[4].innerHTML = "手机格式错误";
+					if (flag) {
+						val+="手机格式错误\/";
+					}
+					aMess[4].style.color = "red";
+					aInput[4].style.borderColor = "red";
+				}else{
+					aMess[4].innerHTML = "手机格式正确";
+					aMess[4].style.color = "#7fc568";
+					aInput[4].style.borderColor = "#7fc568";
+				}
+			}
+
+
+		var oBtn = document.getElementsByTagName('button')[0];
+		oBtn.onclick = function () {
+			val = '';
+			checkName(true);
+			checkPass(true);
+			checkPass1(true);
+			checkMail(true);
+			checkPhone(true);
+			if (val) {
+				alert(val);
+				return false;
+			}
+
+		};
+	</script>
+</body>
+</html>
