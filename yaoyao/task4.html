@@ -56,58 +56,60 @@
 		<input type="button" value="执行">
 	</div>
 	<script type="text/javascript">
+	//获取文本框以及按钮
 	var aInput = document.getElementsByTagName('input');
+	//获取需要操作的正方形
 	var oDiv = document.getElementById('main');
-	var option = 'top';
+	//定义一组方向
+	var aOption = ['top','right','down','left'];
+	//初始化时方向为top
+	var option = aOption[0];
+	//初始化数字和角度为0
+	var num = 0;
     var deg = 0;
+
+    //点击执行按钮
 	aInput[1].onclick = function () {
-
+        //获取文本框的值
 		var oTxt = aInput[0].value;
-
+        //获取正方形的left值和top值
 		var l = oDiv.offsetLeft;
 		var t = oDiv.offsetTop;
-
+        //判断方向和角度
 		if (oTxt.toUpperCase() == 'TUN LEF') {
+			//每次点击角度-90
             deg = deg-90;
 			oDiv.style.transform = 'rotate('+deg+'deg)';
-			if (option === 'top') {
-				option = 'left';
-			}else if (option === 'left') {
-				option = 'down';
-			}else if (option === 'down') {
-				option = 'right';
-			}else if (option === 'right') {
-				option = 'top';
+			//每次点击时num-1，并通过判断来调整num的值
+			num--;
+			if (num<0) {
+				num = 3;
 			}
 		}
 		if (oTxt.toUpperCase() == 'TUN RIG') {
 			deg = deg+90;
 			oDiv.style.transform = 'rotate('+deg+'deg)';
-			if (option === 'top') {
-				option = 'right';
-			}else if (option === 'left') {
-				option = 'top';
-			}else if (option === 'down') {
-				option = 'left';
-			}else if (option === 'right') {
-				option = 'down';
+
+			num++;
+			if (num > 3) {
+				num = 0;
 			}
 		}
 		if (oTxt.toUpperCase() == 'TUN BAC') {
 			deg = deg+180;
 			oDiv.style.transform = 'rotate('+deg+'deg)';
-			if (option === 'top') {
-				option = 'down';
-			}else if (option === 'left') {
-				option = 'right';
-			}else if (option === 'down') {
-				option = 'top';
-			}else if (option === 'right') {
-				option = 'left';
+
+			num += 2;
+			if ((num>3)&&(num%2===0)) {
+				num = 0;
+			}else if ((num>3)&&(num%2!==0)) {
+				num = 1;
 			}
 		}
-		console.log(option);
+		//获取到option的值
+		option = aOption[num];
 		if (oTxt.toUpperCase() == 'GO') {
+			//前进时判断option
 			if (option === 'top') {
 				if (t === 0) {
 					alert('请调整方向');
