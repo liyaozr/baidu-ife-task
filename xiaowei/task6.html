@@ -3,315 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>任务六：通过HTML及CSS模拟报纸排版</title>
-	<style type="text/css">
-		#container{
-			width: 980px;
-			height: 1386px;
-		}
-		header{
-			border-bottom: 2px solid #938e8c;
-			width: 892px;
-			margin: 0 44px;
-		}
-		header p{
-			float: right;
-			margin-top: 45px;
-			color: #dc143c;
-		}
-		#logo{
-			width: 106px;
-			height: 57px;
-			background-color: #d45d5c;
-			font: 12px "SimHei";
-			color: #ffffff;
-			display:table-cell;
-			vertical-align:bottom;
-			padding: 2px;
-		}
-		section{
-			width: 892px;
-			height: 1163px;
-			margin-left: 44px;
-			border-bottom: 1px solid #938e8c;
-		}
-		#main-1{
-			float: right;
-			width: 203px;
-			border-top: 2px solid #cc8090;
-			margin-top: 0px;
-		}
-		#main-1 .biaoti{
-			font: 24px "微软雅黑";
-			color: #000000;
-			text-decoration: underline;
-			line-height: 30px;
-		}
-		#main-1 .neirong1{
-			font: 12px "楷体";
-			color: #676767;
-			line-height: 10px;
-		}
-		#main-1 .neirong2{
-			font: italic 106px "微软雅黑";
-			color: #75b86b;
-		}
-		#main-1 .neirong3{
-			font: 55px "微软雅黑";
-			color: #cc8091;
-			position: relative;
-			bottom: 35px;
-			left: 10px;
-			float: left;
-		}
-		#main-1 .neirong4{
-			float: right;
-			width: 70px;
-			font: 21px "微软雅黑";
-			color: #cc8091;
-			position: relative;
-			bottom: 25px;
-			right: 35px;
-		}
-		#main-2{
-			width: 641px;
-			height: 301px;
-			background: url("image/task6.jpg") no-repeat;
-			margin: 30px 0px;
-			position: relative;
-		}
-		 #left-g{
-			background-color: green;
-			width: 191px;
-			height: 301px;
-			opacity:0.3;
-		}
-		#right-r{
-			background-color: red;
-			width: 191px;
-			height: 301px;
-			opacity:0.3;
-			position: absolute;
-			left: 450px;
-			top: 0px;
-		}
-		#main-3{
-			width: 641px;
-		}
-		#article1,#article2{
-			float: left;
-			width: 220px;
-			padding-right: 15px;
-			display: inline;
-		      line-height: 16px;
-		}
-		#article3{
-			float: left;
-			width: 150px;
-			padding-right: 0px;
-		}
-		#article1 h1{
-			color: #418c59;
-			font: bold 16px "微软雅黑" ;
-			text-decoration: underline;
-		}
-		#article1 p{
-			color: #767777;
-			font:12px "宋体"; 
-		
-		}
-		#article2 h1{
-			color: #d2994f;
-			font: bold 16px "微软雅黑" ;
-			text-decoration: underline;
-		}
-		#article2 p{
-			color: #231815;
-			font:12px "微软雅黑"; 
-			opacity:0.7;
-		}
-		#article3 h1{
-			color: #cc7680;
-			font: bold 16px "微软雅黑" ;
-			text-decoration: underline;
-		}
-		#article3 p{
-			color: #231815;
-			font:12px "微软雅黑"; 
-			opacity:0.7;
-		}
-		#main-4{
-			clear: left;
-		}
-		#main-4-1{
-			width: 405px;
-			float: left;
-		}
-		#main-4-1  #first{
-			font: bold italic 72px '黑体';
-			color: #f5e327;
-		}
-		#main-4-1  #second{
-		       font: bold 42px '黑体';
-			color: #11456b;
-			 line-height: 16px;
-		}
-		#main-4-1  #third{
-			font: 72px '微软雅黑';
-			color: #f5e327
-		}
-		#main-4-1  h2{
-		      font: bold 33px '黑体';
-			color: #11456b;
-			border-bottom: 2px solid  #11456b;
-			width: 415px;
-		}
-		#main-4-1 p{
-			font: 12px '宋体';
-			color: #767777;
-			line-height: 16px;
-			text-indent: 2em;
-		}
-		#main-4-1 #task-image{
-			width: 150px ;
-			height:210px;
-			float: right;
-			padding-left: 10px;
-		}
-		#main-4-2{
-			float: left;
-			background: url(image/task6.3.jpg);
-			width: 458px;
-			height: 275px;
-			margin-left: 20px;
-			position: relative;
-		}
-		#bottom-b{
-			width: 458px;
-			height: 61px;
-			background-color: black;
-			opacity:0.5;
-			position: absolute;
-			top: 214px;
-		}
-		#flower{
-			height: 44px;
-			border-left: 3px solid #72b16a;
-			margin: 8.5px 20px;;
-		}
-		#four{
-			color: #ffffff;
-			font: 26px "微软雅黑";
-			padding-left:10px;
-		}
-		#five{
-			color: #72b16a;
-			font: italic 12px "微软雅黑";
-			word-spacing: 140%;
-		}
-		#main-4-3{
-			float: left;
-			width: 439px;
-			height: 258px;
-			background-color: #ffffcc;
-			margin-left: 20px;
-			margin-top: 20px;
-			padding: 10px;
-			position: relative;
-		}
-		#main-4-3 li{
-			font: 16px "宋体";
-			color: #5a5b5b;
-			text-align: left;
-			line-height: 20px;
-		}
-		#main-4-3 .six{
-			font: italic 12px "宋体";
-			text-align: right;
-		}
-		#seven{
-			background-color: #d45d5c;
-			width: 260px;
-			height: 160px;
-			position: absolute;
-			top: 118px;
-			left: 0px;
-		}
-		#eight{
-			font: 110px "微软雅黑";
-			color: #ffffff;
-			float: left;
-			margin-top: 5px;
-		}
-		#nine{
-			width: 2px;
-			height: 86px;
-			background-color: #ffffff;
-			float: left;
-			margin: 37px 10px ;
-		}
-		#ten{
-			margin: 37px 10px;
-			color: #ffffff;
-			position: relative;
-		}
-		#ten1{
-			font: italic 21px "黑体";
-			line-height: 24px;
-		}
-		#ten2{
-			font:  12px "黑体";
-			line-height: 8px;
-		}
-		#para{
-			float: right;				
-			width: 200px;
-			position: relative;
-			bottom: 20px;
-		}
-		#mark1{
-			font: 72px '黑体';
-			color: #d45d5c;
-			position: absolute;
-			top: 10px;
-		}
-		#mark2{
-			font: 72px '黑体';
-			color: #d45d5c;
-			position: absolute;
-			top: 70px;
-		}
-		#para1{
-			font: italic 14px "黑体";
-			color: #5a5b5b;		
-			line-height: 16px;
-			position: absolute;
-			top: 10px;
-		}
-		footer{
-			width: 892px;
-			font: 12px "黑体";
-			color: #d45d5c;
-			text-align: right;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<div id="container">
-		<header>
-			<p>2016.03</p>
-			<div id="logo">ife.baidu.com</div>
-		</header>
+		<head>
+			<span>2016.03</span>
+			<div class ="logo">
+				<p>ife.baidu.com</p>
+			</div>
+		</head>
 		<section>
-			<div id="main-1">
-				<p >
-				<span class="biaoti">ABOUT TECHNOLOGE</span><br>
-				<span class="neirong1">About technologe about beautiful sunshine abou my dream.</span>
-				<span class="neirong2">700</span>
-			      <div class="neirong3">3.2 </div>
-			      <div class="neirong4">CSS 
-			      <span style="font: 12px '微软雅黑'; color: #cc8091;">mylovemylove</span>
+			<div class="intro">
+				<h1>ABOUT TECHNOLOGE</h1>
+				<h2>About technologe about beautiful sunshine abou my dream.</h2>
+				<span class="num">700</span>
+			      <div class="date">3.2 </div>
+			      <div class="content">CSS
+			      <span style="font: 12px '微软雅黑'; color: #cc8091;">mylove mylove</span>
 				</div>
-				</p>
 			</div>
 
 			<div id="main-2">
@@ -338,7 +48,7 @@
 			<div id="main-4">
 				<div id="main-4-1">
 					<h1>
-						<span id="first">THE </span> 
+						<span id="first">THE </span>
 						<span id="second"> TECHNOLOGE OF FRONT</span>
 					</h1>
 					<h2>
@@ -379,7 +89,7 @@
 						</p>
 					</div>
 				</div>
-					<p id="para"><span id="mark1">“</span><span id="para1">hello world.hello world.hello world.</span><span id="mark2">”</span></p>				                  
+					<p id="para"><span id="mark1">“</span><span id="para1">hello world.hello world.hello world.</span><span id="mark2">”</span></p>
 		      </div>
 		</section>
 		<footer>ife.baidu.com</footer>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务四：听指令的小方块（一）</title>
+	<style type="text/css">
+		div{width: 400px;float: left;font-size: 12px;}
+		#wrap{width: 500px;height: 500px;margin: 30px auto;position: relative;}
+		#wrap1{width: 41px;height: 410px;position: absolute;left:0;top: 41px;}
+		#wrap2{width: 411px;height: 411px;border: 2px solid #000;background: url(image/bg.png) no-repeat;position: absolute;top: 41px;left: 41px;}
+		#wrap3{width: 410px;height: 41px;position: absolute;left: 41px;top: 0;}
+		#wrap1 div,#wrap3 div{width: 41px;height: 41px;line-height: 41px;text-align: center;font-size: 16px;float: left;}
+		#main{width: 41px;height: 31px;position: absolute;top:0;left: 0;background: red;border-top: 10px solid lightskyblue;}
+		#wrap input{position: absolute;bottom: 0;left: 41px;}
+		#wrap input+input{left: 241px;}
+	</style>
+
+</head>
+<body>
+	<div>
+		在输入框中允许输入如下指令，按下按钮后，使得正方形做相应动作<br>
+		GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长）<br>
+		TUN LEF：向左转（逆时针旋转90度）<br>
+		TUN RIG：向右转（顺时针旋转90度）<br>
+		TUN BAC：向右转（旋转180度）<br>
+	</div>
+    <div id="wrap">
+		<div id="wrap1">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+			<div>7</div>
+			<div>8</div>
+			<div>9</div>
+			<div>10</div>
+		</div>
+		<div id="wrap2">
+			<div id="main"></div>
+		</div>
+		<div id="wrap3">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+			<div>7</div>
+			<div>8</div>
+			<div>9</div>
+			<div>10</div>
+		</div>
+		<input type="text">
+		<input type="button" value="执行">
+	</div>
+	<script type="text/javascript">
+	//获取文本框以及按钮
+	var aInput = document.getElementsByTagName('input');
+	//获取需要操作的正方形
+	var oDiv = document.getElementById('main');
+	//定义一组方向
+	var aOption = ['top','right','down','left'];
+	//初始化时方向为top
+	var option = aOption[0];
+	//初始化数字和角度为0
+	var num = 0;
+    var deg = 0;
+
+    //点击执行按钮
+	aInput[1].onclick = function () {
+        //获取文本框的值
+		var oTxt = aInput[0].value;
+        //获取正方形的left值和top值
+		var l = oDiv.offsetLeft;
+		var t = oDiv.offsetTop;
+        //判断方向和角度
+		if (oTxt.toUpperCase() == 'TUN LEF') {
+			//每次点击角度-90
+            deg = deg-90;
+			oDiv.style.transform = 'rotate('+deg+'deg)';
+			//每次点击时num-1，并通过判断来调整num的值
+			num--;
+			if (num<0) {
+				num = 3;
+			}
+		}
+		if (oTxt.toUpperCase() == 'TUN RIG') {
+			deg = deg+90;
+			oDiv.style.transform = 'rotate('+deg+'deg)';
+
+			num++;
+			if (num > 3) {
+				num = 0;
+			}
+		}
+		if (oTxt.toUpperCase() == 'TUN BAC') {
+			deg = deg+180;
+			oDiv.style.transform = 'rotate('+deg+'deg)';
+
+			num += 2;
+			if ((num>3)&&(num%2===0)) {
+				num = 0;
+			}else if ((num>3)&&(num%2!==0)) {
+				num = 1;
+			}
+		}
+		//获取到option的值
+		option = aOption[num];
+		if (oTxt.toUpperCase() == 'GO') {
+			//前进时判断option
+			if (option === 'top') {
+				if (t === 0) {
+					alert('请调整方向');
+				}else{
+					oDiv.style.top = t-41+'px';
+				}
+			}else if (option === 'left') {
+				if (l === 0) {
+					alert('请调整方向');
+				}else{
+					oDiv.style.left = l-41+'px';
+				}
+			}else if (option === 'right') {
+				if (l === 369) {
+					alert('请调整方向');
+				}else{
+					oDiv.style.left = l+41+'px';
+				}
+			}else if (option === 'down') {
+				if (t === 369) {
+					alert('请调整方向');
+				}else{
+					oDiv.style.top = t+41+'px';
+				}
+			}else if () {
+
+			}
+		}
+	};
+
+	</script>
+</body>
+</html>
