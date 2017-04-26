@@ -28,7 +28,7 @@
         for (var i = 0; i < aBtn.length; i++) {
         	aBtn[i].index=i;
         	aBtn[i].onclick=function () {
-        		return aFoo[this.index](this.index);
+        		return aFoo[this.index](flag[this.index]);
         	};
         }
         //点击按钮创建li
@@ -39,6 +39,7 @@
 				var oLi = document.createElement("li");
 				oLi.innerHTML = oTxt.value;
 				oLi.className = "child";
+				console.log(flag);
 				if (flag) {
 					aLi.length===0?(oUl.appendChild(oLi)):(oUl.insertBefore(oLi,oUl.firstChild));
 				}else{
